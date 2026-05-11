@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SLM - Supreme Life Manager</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#0b0f1a;
+      color:white;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:30px;
+    }
+
+    .panel{
+      width:900px;
+      background:#111827;
+      border:2px solid #3b82f6;
+      border-radius:20px;
+      padding:25px;
+      box-shadow:0 0 25px rgba(59,130,246,0.3);
+    }
+
+    .title{
+      text-align:center;
+      font-size:36px;
+      margin-bottom:25px;
+      color:#60a5fa;
+      letter-spacing:2px;
+    }
+
+    .profile{
+      background:#1f2937;
+      border-radius:15px;
+      padding:20px;
+      margin-bottom:25px;
+      border:1px solid #374151;
+    }
+
+    .profile h2{
+      color:#93c5fd;
+      margin-bottom:10px;
+    }
+
+    .profile p{
+      margin:6px 0;
+      color:#d1d5db;
+    }
+
+    .section-title{
+      margin-bottom:15px;
+      color:#c084fc;
+      font-size:22px;
+    }
+
+    .status-section{
+      background:#1f2937;
+      border-radius:15px;
+      padding:20px;
+      margin-bottom:25px;
+      border:1px solid #374151;
+    }
+
+    .bar-box{
+      margin-bottom:20px;
+    }
+
+    .bar-info{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:8px;
+      font-size:15px;
+    }
+
+    .bar{
+      width:100%;
+      height:24px;
+      background:#374151;
+      border-radius:20px;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      transition:0.3s;
+    }
+
+    .hp{
+      background:#ef4444;
+      width:90%;
+    }
+
+    .san{
+      background:#8b5cf6;
+      width:55%;
+    }
+
+    .sta{
+      background:#22c55e;
+      width:80%;
+    }
+
+    .gold{
+      background:#eab308;
+      width:40%;
+    }
+
+    .buttons{
+      margin-top:8px;
+      display:flex;
+      gap:10px;
+    }
+
+    button{
+      padding:5px 12px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.2s;
+    }
+
+    button:hover{
+      transform:scale(1.05);
+    }
+
+    .plus{
+      background:#22c55e;
+      color:white;
+    }
+
+    .minus{
+      background:#ef4444;
+      color:white;
+    }
+
+    .stats{
+      background:#1f2937;
+      border-radius:15px;
+      padding:20px;
+      border:1px solid #374151;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+
+    .stat{
+      background:#111827;
+      padding:15px;
+      border-radius:12px;
+      border:1px solid #374151;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .rank{
+      font-size:20px;
+      font-weight:bold;
+      color:#60a5fa;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:25px;
+      color:#6b7280;
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="panel">
+
+    <h1 class="title">SLM - Supreme Life Manager</h1>
+
+    <div class="profile">
+      <h2>Roberto Rossi</h2>
+
+      <p><strong>Classe:</strong> Arquiteto Criativo</p>
+      <p><strong>Lv:</strong> 12</p>
+      <p><strong>Título:</strong> Colecionador Errante</p>
+      <p><strong>Rank Geral:</strong> B</p>
+    </div>
+
+    <div class="status-section">
+
+      <h2 class="section-title">STATUS</h2>
+
+      <div class="bar-box">
+        <div class="bar-info">
+          <span>HP</span>
+          <span id="hpText">90/100</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill hp" id="hpBar"></div>
+        </div>
+
+        <div class="buttons">
+          <button class="plus" onclick="changeBar('hp',10)">+</button>
+          <button class="minus" onclick="changeBar('hp',-10)">-</button>
+        </div>
+      </div>
+
+      <div class="bar-box">
+        <div class="bar-info">
+          <span>SAN</span>
+          <span id="sanText">55/100</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill san" id="sanBar"></div>
+        </div>
+
+        <div class="buttons">
+          <button class="plus" onclick="changeBar('san',10)">+</button>
+          <button class="minus" onclick="changeBar('san',-10)">-</button>
+        </div>
+      </div>
+
+      <div class="bar-box">
+        <div class="bar-info">
+          <span>STA</span>
+          <span id="staText">80/100</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill sta" id="staBar"></div>
+        </div>
+
+        <div class="buttons">
+          <button class="plus" onclick="changeBar('sta',10)">+</button>
+          <button class="minus" onclick="changeBar('sta',-10)">-</button>
+        </div>
+      </div>
+
+      <div class="bar-box">
+        <div class="bar-info">
+          <span>GOLD</span>
+          <span id="goldText">40/100</span>
+        </div>
+
+        <div class="bar">
+          <div class="fill gold" id="goldBar"></div>
+        </div>
+
+        <div class="buttons">
+          <button class="plus" onclick="changeBar('gold',10)">+</button>
+          <button class="minus" onclick="changeBar('gold',-10)">-</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stats">
+
+      <h2 class="section-title">SKILLS</h2>
+
+      <div class="stats-grid">
+
+        <div class="stat">
+          <span>CRT</span>
+          <span class="rank">S</span>
+        </div>
+
+        <div class="stat">
+          <span>INT</span>
+          <span class="rank">S</span>
+        </div>
+
+        <div class="stat">
+          <span>TEC</span>
+          <span class="rank">S</span>
+        </div>
+
+        <div class="stat">
+          <span>CUL</span>
+          <span class="rank">A</span>
+        </div>
+
+        <div class="stat">
+          <span>DISC</span>
+          <span class="rank">C</span>
+        </div>
+
+        <div class="stat">
+          <span>CHA</span>
+          <span class="rank">D</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      SLM v0.1 • Prototype Build
+    </div>
+
+  </div>
+
+  <script>
+
+    const stats = {
+      hp:90,
+      san:55,
+      sta:80,
+      gold:40
+    };
+
+    function changeBar(type, amount){
+
+      stats[type] += amount;
+
+      if(stats[type] > 100){
+        stats[type] = 100;
+      }
+
+      if(stats[type] < 0){
+        stats[type] = 0;
+      }
+
+      document.getElementById(type + "Bar").style.width = stats[type] + "%";
+      document.getElementById(type + "Text").innerText = stats[type] + "/100";
+
+    }
+
+  </script>
+
+</body>
+  </html>
